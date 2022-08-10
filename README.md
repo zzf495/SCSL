@@ -1,3 +1,9 @@
 # Selected Sample Labeling for Domain Adaptation (SSL)
 
-This repository contains the codes of the  SSL. The codes will be uploaded once the manuscript is accepted.
+This repository contains the codes of the  SSL.
+
+## Code files (matlab implementation)
+
+SSL.m : the implementation of SSL;
+
+demo.m: experimental demonstration on Office (decaf) dataset.
