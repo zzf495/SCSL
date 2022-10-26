@@ -104,7 +104,7 @@ for iter = 1:num_iter
     % Solve DPL and get probability
     pos=C-sC+1;
     p=1-(iter/num_iter);
-    [probYt,trustable,predLabels] = getSPL(Zs,Ys,Zt,predLabels,pos,p);
+    [probYt,trustable,predLabels] = getDPL(Zs,Ys,Zt,predLabels,pos,p);
     % calculate ACC
     acc=getAcc(predLabels,RealYt);
     acc_ite(iter)=acc;

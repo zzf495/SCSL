@@ -1,4 +1,4 @@
-function [probYt,trustable,predLabels] = getSPL(Zs,Ys,Zt,Ytpseudo,pos,selectRate)
+function [probYt,trustable,predLabels] = getDPL(Zs,Ys,Zt,Ytpseudo,pos,selectRate)
 %% input
 %%%     Xs              The source sample set with m * ns
 %%%     Ys              The source labels of Xs with ns * 1
@@ -25,7 +25,8 @@ prob2(prob2==prob)=0;
 prob2=prob2';
 prob=prob';predLabels=predLabels';
 %% Run DPL
-[sortedProb,index] = sort(prob-prob2);
+prob=prob-prob2;
+[sortedProb,index] = sort(prob);
 sortedPredLabels = predLabels(index);
 trustable = zeros(1,length(prob));
 for i = 1:C
