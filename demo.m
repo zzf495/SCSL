@@ -51,10 +51,10 @@ for i = 1:12
     P_pca = PCA(X,optsPCA);
     domainS_features = domainS_features_ori*P_pca;
     domainT_features = domainT_features*P_pca;
-    %% Run SSL
+    %% Run SCSL
     Xs=L2Norm(domainS_features)';
     Xt=L2Norm(domainT_features)';
-    [acc,acc_ite]=SSL(Xs,Ys,Xt,Yt,options);
+    [acc,acc_ite]=SCSL(Xs,Ys,Xt,Yt,options);
     accIteration=[accIteration;acc_ite];
     result(i)=acc;
 end
