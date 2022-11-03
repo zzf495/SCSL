@@ -1,9 +1,9 @@
-# Selected Sample Labeling for Domain Adaptation (SSL)
+# Selected Confidence Sample Labeling for Domain Adaptation (SCSL)
 
-This repository contains the codes of the  SSL.
+This repository contains the codes of the  SCSL.
 
 ## Code files (matlab implementation)
 
-SSL.m : the implementation of SSL;
+SCSL.m : the implementation of SCSL;
 
 demo.m: experimental demonstration on Office (decaf) dataset.
