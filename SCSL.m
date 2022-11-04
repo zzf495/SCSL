@@ -1,4 +1,4 @@
-function [acc,acc_ite,A]= SSL(Xs,Ys,Xt,RealYt,options)
+function [acc,acc_ite,A]= SCSL(Xs,Ys,Xt,RealYt,options)
 %% Information
 %%%         Selected Sample Labelling for Domain Adaptation
 %%%         Author          ZeFeng Zheng et al.
@@ -104,7 +104,12 @@ for iter = 1:num_iter
     % Solve DPL and get probability
     pos=C-sC+1;
     p=1-(iter/num_iter);
-    [probYt,trustable,predLabels] = getDPL(Zs,Ys,Zt,predLabels,pos,p);
+    if i>1
+       lastPredLabels= predLabels;
+    else
+        lastPredLabels=[];
+    end
+    [probYt,trustable,predLabels] = getDPL(Zs,Ys,Zt,predLabels,lastPredLabels,pos,p);
     % calculate ACC
     acc=getAcc(predLabels,RealYt);
     acc_ite(iter)=acc;

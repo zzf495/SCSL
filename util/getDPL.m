@@ -1,4 +1,4 @@
-function [probYt,trustable,predLabels] = getDPL(Zs,Ys,Zt,Ytpseudo,pos,selectRate)
+function [probYt,trustable,predLabels] = getDPL(Zs,Ys,Zt,Ytpseudo,lastPredLabels,pos,selectRate)
 %% input
 %%%     Xs              The source sample set with m * ns
 %%%     Ys              The source labels of Xs with ns * 1
@@ -35,6 +35,9 @@ for i = 1:C
         idx=min((floor(length(thisClassProb)*selectRate)+1),length(thisClassProb));
         trustable = trustable+ ((prob>thisClassProb(idx)).*(predLabels==i));
     end
+end
+if ~isempty(lastPredLabels)
+    trustable(lastPredLabels~=Ytpseudo)=0;
 end
 %% Get top-k probability
 [a,~]=sort(probMatrix,2);
