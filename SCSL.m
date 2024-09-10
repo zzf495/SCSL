@@ -109,7 +109,7 @@ for iter = 1:num_iter
     else
         lastPredLabels=[];
     end
-    [probYt,trustable,predLabels] = getDPL(Zs,Ys,Zt,predLabels,lastPredLabels,pos,p);
+    [probYt,trustable,predLabels] = getDPL(Zs,Ys,Zt,lastPredLabels,pos,p);
     % calculate ACC
     acc=getAcc(predLabels,RealYt);
     acc_ite(iter)=acc;

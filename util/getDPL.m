@@ -1,4 +1,4 @@
-function [probYt,trustable,predLabels] = getDPL(Zs,Ys,Zt,Ytpseudo,lastPredLabels,pos,selectRate)
+function [probYt,trustable,predLabels] = getDPL(Zs,Ys,Zt,lastPredLabels,pos,selectRate)
 %% input
 %%%     Xs              The source sample set with m * ns
 %%%     Ys              The source labels of Xs with ns * 1
@@ -15,7 +15,7 @@ function [probYt,trustable,predLabels] = getDPL(Zs,Ys,Zt,Ytpseudo,lastPredLabels
 C=length(unique(Ys));
 selectRate=max(0,min(selectRate,1));
 %% SVM classification
-probMatrix=svm_classify(Zs',Zt',Ys,Ytpseudo);
+probMatrix=svm_classify(Zs',Zt',Ys,lastPredLabels);
 % The highest probability
 [prob,predLabels]=max(probMatrix,[],2);
 % The second-highest probability
@@ -37,7 +37,7 @@ for i = 1:C
     end
 end
 if ~isempty(lastPredLabels)
-    trustable(lastPredLabels~=Ytpseudo)=0;
+    trustable(lastPredLabels~=predLabels)=0;
 end
 %% Get top-k probability
 [a,~]=sort(probMatrix,2);
